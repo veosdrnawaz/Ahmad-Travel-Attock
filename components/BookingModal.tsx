@@ -1,4 +1,5 @@
-import React, { useState } from 'react';
+
+import React, { useState, useEffect } from 'react';
 import { X, Calendar, MapPin, Users, User, Mail, Phone } from 'lucide-react';
 import { BookingFormData, Package } from '../types';
 
@@ -6,9 +7,10 @@ interface BookingModalProps {
   isOpen: boolean;
   onClose: () => void;
   selectedPackage: Package | null;
+  initialPersons?: number;
 }
 
-export const BookingModal: React.FC<BookingModalProps> = ({ isOpen, onClose, selectedPackage }) => {
+export const BookingModal: React.FC<BookingModalProps> = ({ isOpen, onClose, selectedPackage, initialPersons }) => {
   const [formData, setFormData] = useState<BookingFormData>({
     fullName: '',
     email: '',
@@ -17,6 +19,16 @@ export const BookingModal: React.FC<BookingModalProps> = ({ isOpen, onClose, sel
     persons: 1,
     travelDate: ''
   });
+
+  // Reset/Update form when modal opens
+  useEffect(() => {
+    if (isOpen) {
+      setFormData(prev => ({
+        ...prev,
+        persons: initialPersons || 1
+      }));
+    }
+  }, [isOpen, initialPersons]);
 
   if (!isOpen) return null;
 

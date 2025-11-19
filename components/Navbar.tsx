@@ -68,10 +68,10 @@ export const Navbar: React.FC<NavbarProps> = ({ onLoginClick, onChatClick }) => 
               <a href="#services" onClick={(e) => handleNavClick(e, '#services')} className="hover:text-blue-200 transition-colors text-sm font-bold uppercase tracking-wider shadow-black drop-shadow-sm">Services</a>
               <a href="#contact" onClick={(e) => handleNavClick(e, '#contact')} className="hover:text-blue-200 transition-colors text-sm font-bold uppercase tracking-wider shadow-black drop-shadow-sm">Contact</a>
               
-              <div className="flex items-center gap-2 bg-blue-900/60 backdrop-blur-sm px-4 py-2 rounded-full border border-white/20">
+              <a href="tel:03184898594" className="flex items-center gap-2 bg-blue-900/60 backdrop-blur-sm px-4 py-2 rounded-full border border-white/20 hover:bg-blue-900/80 transition-colors">
                 <Phone size={16} className="text-green-400" />
                 <span className="text-sm font-semibold">03184898594</span>
-              </div>
+              </a>
             </div>
 
             {/* Login Button (Right) */}
@@ -146,7 +146,7 @@ export const Navbar: React.FC<NavbarProps> = ({ onLoginClick, onChatClick }) => 
             
             <div className="absolute bottom-0 left-0 w-full p-6 bg-[#153059]">
                <p className="text-xs text-blue-200 mb-2">Need Help?</p>
-               <p className="text-xl font-bold">03184898594</p>
+               <a href="tel:03184898594" className="text-xl font-bold hover:text-green-400 transition-colors">03184898594</a>
             </div>
           </div>
         </div>

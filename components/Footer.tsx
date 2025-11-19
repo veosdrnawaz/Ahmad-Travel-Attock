@@ -1,3 +1,4 @@
+
 import React from 'react';
 import { Phone, Mail, MapPin, Facebook, Instagram, Twitter } from 'lucide-react';
 
@@ -40,7 +41,7 @@ export const Footer: React.FC = () => {
             <ul className="space-y-3 text-sm text-gray-400">
               <li><a href="#" className="hover:text-blue-400 transition-colors">Home</a></li>
               <li><a href="#" className="hover:text-blue-400 transition-colors">About Us</a></li>
-              <li><a href="#packages" className="hover:text-blue-400 transition-colors">Tour Packages</a></li>
+              <li><a href="#packages" onClick={(e) => {e.preventDefault(); document.getElementById('packages')?.scrollIntoView({behavior: 'smooth'})}} className="hover:text-blue-400 transition-colors">Tour Packages</a></li>
               <li><a href="#" className="hover:text-blue-400 transition-colors">Umrah Services</a></li>
               <li><a href="#" className="hover:text-blue-400 transition-colors">Privacy Policy</a></li>
             </ul>
@@ -68,11 +69,11 @@ export const Footer: React.FC = () => {
               </li>
               <li className="flex items-center gap-3">
                 <Phone size={18} className="text-blue-500 shrink-0" />
-                <span className="font-mono text-white">03184898594</span>
+                <a href="tel:03184898594" className="font-mono text-white hover:text-blue-400 transition-colors">03184898594</a>
               </li>
               <li className="flex items-center gap-3">
                 <Mail size={18} className="text-blue-500 shrink-0" />
-                <span>info@ahmadtravel.com</span>
+                <a href="mailto:info@ahmadtravel.com" className="hover:text-blue-400 transition-colors">info@ahmadtravel.com</a>
               </li>
             </ul>
           </div>

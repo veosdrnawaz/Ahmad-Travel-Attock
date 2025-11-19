@@ -78,7 +78,7 @@ export const LoginModal: React.FC<LoginModalProps> = ({ isOpen, onClose }) => {
               <input type="checkbox" className="rounded border-gray-300 text-[#1a3c6e] focus:ring-[#1a3c6e]" />
               <span className="text-gray-600">Remember me</span>
             </label>
-            <button type="button" className="text-[#1a3c6e] font-semibold hover:underline">Forgot Password?</button>
+            <button type="button" onClick={() => alert("Password reset feature coming soon!")} className="text-[#1a3c6e] font-semibold hover:underline">Forgot Password?</button>
           </div>
 
           <button
@@ -97,7 +97,7 @@ export const LoginModal: React.FC<LoginModalProps> = ({ isOpen, onClose }) => {
         </form>
 
         <div className="p-4 bg-gray-50 text-center text-sm text-gray-600 border-t border-gray-100">
-          Don't have an account? <button className="text-[#1a3c6e] font-bold hover:underline">Sign up</button>
+          Don't have an account? <button onClick={() => alert("Registration feature coming soon!")} className="text-[#1a3c6e] font-bold hover:underline">Sign up</button>
         </div>
 
         <button onClick={onClose} className="absolute top-4 right-4 text-gray-400 hover:text-gray-600 bg-gray-50 rounded-full p-1">

@@ -1,6 +1,7 @@
 
-import React, { useEffect, useRef } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { X, Send } from 'lucide-react';
+import { ChatMessage } from '../types';
 
 interface ChatWidgetProps {
   isOpen: boolean;
@@ -8,7 +9,16 @@ interface ChatWidgetProps {
   onClose: () => void;
 }
 
+const INITIAL_MESSAGE: ChatMessage = {
+  id: '1',
+  text: "Assalam-o-Alaikum!\nMy name is Ibraheem, and I'm your AI Umrah Advisor from Ahmad Travel.\nHow can I help you today?",
+  sender: 'bot',
+  timestamp: new Date()
+};
+
 export const ChatWidget: React.FC<ChatWidgetProps> = ({ isOpen, onToggle, onClose }) => {
+  const [messages, setMessages] = useState<ChatMessage[]>([INITIAL_MESSAGE]);
+  const [inputValue, setInputValue] = useState('');
   const messagesEndRef = useRef<HTMLDivElement>(null);
 
   const scrollToBottom = () => {
@@ -19,7 +29,33 @@ export const ChatWidget: React.FC<ChatWidgetProps> = ({ isOpen, onToggle, onClos
     if (isOpen) {
       scrollToBottom();
     }
-  }, [isOpen]);
+  }, [isOpen, messages]);
+
+  const handleSendMessage = (e: React.FormEvent) => {
+    e.preventDefault();
+    if (!inputValue.trim()) return;
+
+    const userMsg: ChatMessage = {
+      id: Date.now().toString(),
+      text: inputValue.trim(),
+      sender: 'user',
+      timestamp: new Date()
+    };
+
+    setMessages(prev => [...prev, userMsg]);
+    setInputValue('');
+
+    // Simulate bot response
+    setTimeout(() => {
+      const botMsg: ChatMessage = {
+        id: (Date.now() + 1).toString(),
+        text: "Thank you for your message! Our advisor will review your query and get back to you shortly at 03184898594.",
+        sender: 'bot',
+        timestamp: new Date()
+      };
+      setMessages(prev => [...prev, botMsg]);
+    }, 1500);
+  };
 
   return (
     <div className="fixed bottom-4 right-4 sm:bottom-6 sm:right-6 z-50 flex flex-col items-end font-sans">
@@ -50,17 +86,30 @@ export const ChatWidget: React.FC<ChatWidgetProps> = ({ isOpen, onToggle, onClos
 
           {/* Chat Body */}
           <div className="p-4 h-[350px] bg-gray-50 overflow-y-auto flex flex-col gap-4">
-             {/* Bot Message */}
-             <div className="flex gap-3">
-                <div className="w-8 h-8 rounded-full bg-gray-200 overflow-hidden border border-gray-100 shrink-0 hidden sm:block">
-                   <img src="https://api.dicebear.com/7.x/avataaars/svg?seed=Ibraheem&clothing=graphicShirt" alt="AI" />
+             {messages.map((msg) => (
+                <div key={msg.id} className={`flex gap-3 ${msg.sender === 'user' ? 'justify-end' : ''}`}>
+                  {msg.sender === 'bot' && (
+                    <div className="w-8 h-8 rounded-full bg-gray-200 overflow-hidden border border-gray-100 shrink-0 hidden sm:block">
+                      <img src="https://api.dicebear.com/7.x/avataaars/svg?seed=Ibraheem&clothing=graphicShirt" alt="AI" />
+                    </div>
+                  )}
+                  
+                  <div className={`p-3 rounded-2xl shadow-sm text-sm leading-relaxed max-w-[85%] whitespace-pre-wrap ${
+                    msg.sender === 'user' 
+                      ? 'bg-[#1a3c6e] text-white rounded-tr-none' 
+                      : 'bg-white border border-gray-100 text-gray-700 rounded-tl-none'
+                  }`}>
+                     {msg.sender === 'bot' && msg.id === '1' ? (
+                       <>
+                         <p className="font-bold text-gray-900 mb-1">Assalam-o-Alaikum!</p>
+                         {msg.text.replace("Assalam-o-Alaikum!\n", "").split('\n').map((line, i) => <p key={i} className={i === 0 ? "mb-2" : ""}>{line}</p>)}
+                       </>
+                     ) : (
+                       msg.text
+                     )}
+                  </div>
                 </div>
-                <div className="bg-white p-4 rounded-2xl rounded-tl-none shadow-sm border border-gray-100 text-sm text-gray-700 leading-relaxed max-w-[95%] sm:max-w-[85%]">
-                   <p className="font-bold text-gray-900 mb-1">Assalam-o-Alaikum!</p>
-                   <p className="mb-2">My name is Ibraheem, and I'm your AI Umrah Advisor from Ahmad Travel.</p>
-                   <p>How can I help you today?</p>
-                </div>
-             </div>
+             ))}
              <div ref={messagesEndRef} />
           </div>
 
@@ -68,17 +117,24 @@ export const ChatWidget: React.FC<ChatWidgetProps> = ({ isOpen, onToggle, onClos
           <div className="p-3 bg-white border-t border-gray-100">
             <form 
               className="relative"
-              onSubmit={(e) => {
-                e.preventDefault();
-                // Placeholder for message sending
-              }}
+              onSubmit={handleSendMessage}
             >
               <input 
                 type="text" 
+                value={inputValue}
+                onChange={(e) => setInputValue(e.target.value)}
                 placeholder="Ask me anything..." 
                 className="w-full bg-white border border-gray-200 text-gray-800 text-sm rounded-full py-3 pl-5 pr-12 focus:outline-none focus:ring-2 focus:ring-[#1a3c6e]/20 focus:border-[#1a3c6e] transition-all shadow-sm placeholder:text-gray-400"
               />
-              <button type="submit" className="absolute right-2 top-1/2 -translate-y-1/2 text-blue-600 hover:text-blue-700 hover:bg-blue-50 p-2 rounded-full transition-all">
+              <button 
+                type="submit" 
+                disabled={!inputValue.trim()}
+                className={`absolute right-2 top-1/2 -translate-y-1/2 p-2 rounded-full transition-all ${
+                  inputValue.trim() 
+                    ? 'text-blue-600 hover:text-blue-700 hover:bg-blue-50' 
+                    : 'text-gray-300 cursor-not-allowed'
+                }`}
+              >
                 <Send size={18} />
               </button>
             </form>

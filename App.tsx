@@ -37,9 +37,11 @@ const App: React.FC = () => {
   const [isLoginModalOpen, setIsLoginModalOpen] = useState(false);
   const [isChatOpen, setIsChatOpen] = useState(false);
   const [selectedPackage, setSelectedPackage] = useState<Package | null>(null);
+  const [initialPersons, setInitialPersons] = useState(1);
 
-  const handleBookClick = (pkg: Package) => {
+  const handleBookClick = (pkg: Package, persons: number) => {
     setSelectedPackage(pkg);
+    setInitialPersons(persons);
     setIsBookingModalOpen(true);
   };
 
@@ -76,6 +78,7 @@ const App: React.FC = () => {
         isOpen={isBookingModalOpen} 
         onClose={handleCloseBookingModal} 
         selectedPackage={selectedPackage} 
+        initialPersons={initialPersons}
       />
 
       <LoginModal 
