@@ -3,6 +3,15 @@ import React from 'react';
 import { Phone, Mail, MapPin, Facebook, Instagram, Twitter } from 'lucide-react';
 
 export const Footer: React.FC = () => {
+  
+  const scrollToSection = (e: React.MouseEvent<HTMLAnchorElement>, id: string) => {
+    e.preventDefault();
+    const element = document.getElementById(id);
+    if (element) {
+      element.scrollIntoView({ behavior: 'smooth' });
+    }
+  };
+
   return (
     <footer id="contact" className="bg-gray-900 text-white pt-16 pb-8 border-t border-gray-800">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -20,7 +29,7 @@ export const Footer: React.FC = () => {
               </div>
             </div>
             <p className="text-gray-400 text-sm leading-relaxed mb-6">
-              Your trusted partner for Hajj, Umrah, and worldwide travel bookings. We ensure comfort, reliability, and the best rates.
+              Your trusted travel partner in Attock. We make Umrah, Hajj, and World Tours easy, safe, and affordable.
             </p>
             <div className="flex gap-4">
               <a href="#" className="w-10 h-10 rounded-full bg-gray-800 flex items-center justify-center hover:bg-blue-600 transition-colors">
@@ -37,13 +46,13 @@ export const Footer: React.FC = () => {
 
           {/* Quick Links */}
           <div>
-            <h4 className="font-bold text-lg mb-6 text-white">Quick Links</h4>
+            <h4 className="font-bold text-lg mb-6 text-white">Menu</h4>
             <ul className="space-y-3 text-sm text-gray-400">
-              <li><a href="#" className="hover:text-blue-400 transition-colors">Home</a></li>
-              <li><a href="#" className="hover:text-blue-400 transition-colors">About Us</a></li>
-              <li><a href="#packages" onClick={(e) => {e.preventDefault(); document.getElementById('packages')?.scrollIntoView({behavior: 'smooth'})}} className="hover:text-blue-400 transition-colors">Tour Packages</a></li>
-              <li><a href="#" className="hover:text-blue-400 transition-colors">Umrah Services</a></li>
-              <li><a href="#" className="hover:text-blue-400 transition-colors">Privacy Policy</a></li>
+              <li><a href="#home" onClick={(e) => scrollToSection(e, 'home')} className="hover:text-blue-400 transition-colors">Home</a></li>
+              <li><a href="#services" onClick={(e) => scrollToSection(e, 'services')} className="hover:text-blue-400 transition-colors">Why Us</a></li>
+              <li><a href="#packages" onClick={(e) => scrollToSection(e, 'packages')} className="hover:text-blue-400 transition-colors">Packages</a></li>
+              <li><a href="#services" onClick={(e) => scrollToSection(e, 'services')} className="hover:text-blue-400 transition-colors">Services</a></li>
+              <li><a href="#" className="hover:text-blue-400 transition-colors">Policies</a></li>
             </ul>
           </div>
 
@@ -51,11 +60,11 @@ export const Footer: React.FC = () => {
           <div>
             <h4 className="font-bold text-lg mb-6 text-white">Services</h4>
             <ul className="space-y-3 text-sm text-gray-400">
-              <li><a href="#" className="hover:text-blue-400 transition-colors">Flight Booking</a></li>
-              <li><a href="#" className="hover:text-blue-400 transition-colors">Hotel Reservations</a></li>
-              <li><a href="#" className="hover:text-blue-400 transition-colors">Visa Assistance</a></li>
+              <li><a href="#" className="hover:text-blue-400 transition-colors">International Flights</a></li>
+              <li><a href="#" className="hover:text-blue-400 transition-colors">Hotel Booking</a></li>
+              <li><a href="#" className="hover:text-blue-400 transition-colors">Umrah Visa</a></li>
               <li><a href="#" className="hover:text-blue-400 transition-colors">Travel Insurance</a></li>
-              <li><a href="#" className="hover:text-blue-400 transition-colors">Car Rentals</a></li>
+              <li><a href="#" className="hover:text-blue-400 transition-colors">Group Tours</a></li>
             </ul>
           </div>
 

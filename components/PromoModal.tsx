@@ -41,27 +41,27 @@ export const PromoModal: React.FC = () => {
         </div>
 
         <h2 className="text-2xl md:text-3xl font-bold text-white mb-4 leading-tight">
-          Book Umrah Services With Travel Agency Discounts
+          Special 2025 Offer
         </h2>
         
         <div className="w-16 h-0.5 bg-white/50 mx-auto mb-4"></div>
 
         <p className="text-white/90 mb-8 font-medium">
-          Limited time offer for January 2025 bookings.
+          Book your Ramadan Umrah package now. Limited seats available.
         </p>
 
         <button 
           onClick={handleViewDeals}
           className="w-full bg-white text-[#1aa3a3] font-bold py-3.5 rounded shadow-md hover:bg-gray-50 transition-colors uppercase tracking-wider text-sm"
         >
-          See Today's Deals
+          View Offers
         </button>
 
         <button 
           onClick={() => setIsVisible(false)}
           className="mt-4 text-white text-sm underline hover:text-gray-200 decoration-white/50"
         >
-          No, thanks
+          No Thanks
         </button>
       </div>
     </div>

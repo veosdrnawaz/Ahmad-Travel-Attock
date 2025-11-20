@@ -1,3 +1,4 @@
+
 import React from 'react';
 import { Star, Quote } from 'lucide-react';
 
@@ -23,13 +24,13 @@ export const Testimonials: React.FC = () => {
             <div className="flex-1 text-center md:text-left">
                <Quote size={40} className="text-blue-300 mb-4 mx-auto md:mx-0 opacity-50" />
                <p className="text-lg md:text-2xl font-medium leading-relaxed mb-6 italic">
-                 "Ahmad Travel Attock provided an exceptional Umrah experience for my family. The hotels were close to Haram, and the transport was seamless. Highly recommended for their professionalism and transparency!"
+                 "Ahmad Travel made our Umrah trip perfect. The hotels were very close to the Haram, and the service was excellent. Highly recommended for a peace of mind journey!"
                </p>
                
                <div className="flex flex-col md:flex-row items-center justify-between gap-4">
                  <div>
                     <h4 className="text-xl font-bold">Muhammad Usman</h4>
-                    <p className="text-blue-200 text-sm">Satisfied Traveler</p>
+                    <p className="text-blue-200 text-sm">Traveled Jan 2025</p>
                  </div>
                  
                  <div className="bg-white/10 backdrop-blur-md px-4 py-2 rounded-full flex items-center gap-2">

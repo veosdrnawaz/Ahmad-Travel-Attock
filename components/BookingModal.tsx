@@ -36,7 +36,7 @@ export const BookingModal: React.FC<BookingModalProps> = ({ isOpen, onClose, sel
     e.preventDefault();
     // Simulate API call
     console.log("Booking submitted:", { package: selectedPackage, ...formData });
-    alert("Thank you! Your booking request has been sent. Ahmad Travel Attock will contact you shortly.");
+    alert(`Request Sent!\n\nThank you ${formData.fullName}. We have received your request for "${selectedPackage?.title}".\n\nOur team will contact you soon.`);
     onClose();
   };
 
@@ -49,16 +49,27 @@ export const BookingModal: React.FC<BookingModalProps> = ({ isOpen, onClose, sel
     <div className="fixed inset-0 z-[100] flex items-center justify-center p-4">
       <div className="absolute inset-0 bg-black/60 backdrop-blur-sm" onClick={onClose}></div>
       
-      <div className="relative bg-white rounded-2xl shadow-2xl w-full max-w-lg overflow-hidden flex flex-col max-h-[90vh]">
+      <div className="relative bg-white rounded-2xl shadow-2xl w-full max-w-lg overflow-hidden flex flex-col max-h-[90vh] animate-in fade-in zoom-in duration-300">
         {/* Header */}
-        <div className="bg-gradient-to-r from-blue-800 to-blue-600 p-6 text-white flex justify-between items-center shrink-0">
-          <div>
-            <h2 className="text-xl font-bold">Book Your Trip</h2>
-            {selectedPackage && <p className="text-blue-100 text-sm mt-1">Package: {selectedPackage.title}</p>}
+        <div className="bg-gradient-to-r from-blue-800 to-blue-600 p-6 text-white shrink-0">
+          <div className="flex justify-between items-start">
+             <div>
+               <h2 className="text-xl font-bold">Book Your Trip</h2>
+               {selectedPackage && (
+                 <div className="mt-2 bg-white/10 rounded-lg p-2 border border-white/20 backdrop-blur-sm">
+                   <p className="text-sm font-medium leading-tight">{selectedPackage.title}</p>
+                   <div className="flex items-center gap-2 mt-1 text-xs text-blue-200">
+                      <span className="bg-white/20 px-1.5 py-0.5 rounded">PKR {selectedPackage.priceNumber.toLocaleString()}</span>
+                      <span>•</span>
+                      <span>{formData.persons} Person(s)</span>
+                   </div>
+                 </div>
+               )}
+             </div>
+             <button onClick={onClose} className="text-white/80 hover:text-white p-1 rounded-full hover:bg-white/10 transition-colors">
+               <X size={24} />
+             </button>
           </div>
-          <button onClick={onClose} className="text-white/80 hover:text-white p-1 rounded-full hover:bg-white/10 transition-colors">
-            <X size={24} />
-          </button>
         </div>
 
         {/* Scrollable Content */}
@@ -67,7 +78,7 @@ export const BookingModal: React.FC<BookingModalProps> = ({ isOpen, onClose, sel
             
             <div className="space-y-1">
               <label className="text-sm font-semibold text-gray-700 flex items-center gap-2">
-                <User size={16} className="text-blue-600" /> Full Name
+                <User size={16} className="text-blue-600" /> Your Name
               </label>
               <input
                 type="text"
@@ -76,14 +87,14 @@ export const BookingModal: React.FC<BookingModalProps> = ({ isOpen, onClose, sel
                 value={formData.fullName}
                 onChange={handleChange}
                 className="w-full border border-gray-300 rounded-lg p-3 focus:ring-2 focus:ring-blue-500 focus:border-transparent outline-none"
-                placeholder="John Doe"
+                placeholder="Full Name"
               />
             </div>
 
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
               <div className="space-y-1">
                 <label className="text-sm font-semibold text-gray-700 flex items-center gap-2">
-                  <Mail size={16} className="text-blue-600" /> Email Address
+                  <Mail size={16} className="text-blue-600" /> Email
                 </label>
                 <input
                   type="email"
@@ -97,7 +108,7 @@ export const BookingModal: React.FC<BookingModalProps> = ({ isOpen, onClose, sel
               </div>
               <div className="space-y-1">
                 <label className="text-sm font-semibold text-gray-700 flex items-center gap-2">
-                  <Phone size={16} className="text-blue-600" /> Phone Number
+                  <Phone size={16} className="text-blue-600" /> Mobile
                 </label>
                 <input
                   type="tel"
@@ -106,7 +117,7 @@ export const BookingModal: React.FC<BookingModalProps> = ({ isOpen, onClose, sel
                   value={formData.phone}
                   onChange={handleChange}
                   className="w-full border border-gray-300 rounded-lg p-3 focus:ring-2 focus:ring-blue-500 focus:border-transparent outline-none"
-                  placeholder="03184898594"
+                  placeholder="0300 1234567"
                 />
               </div>
             </div>
@@ -114,7 +125,7 @@ export const BookingModal: React.FC<BookingModalProps> = ({ isOpen, onClose, sel
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
               <div className="space-y-1">
                 <label className="text-sm font-semibold text-gray-700 flex items-center gap-2">
-                  <MapPin size={16} className="text-blue-600" /> Departure City
+                  <MapPin size={16} className="text-blue-600" /> City
                 </label>
                 <input
                   type="text"
@@ -161,10 +172,10 @@ export const BookingModal: React.FC<BookingModalProps> = ({ isOpen, onClose, sel
                 type="submit"
                 className="w-full bg-green-600 hover:bg-green-700 text-white font-bold py-4 rounded-lg shadow-md hover:shadow-xl transition-all transform active:scale-[0.98]"
               >
-                Confirm Booking Request
+                Submit Request
               </button>
               <p className="text-center text-xs text-gray-500 mt-3">
-                Our agent will contact you at 03184898594 to finalize details.
+                No payment required right now.
               </p>
             </div>
 

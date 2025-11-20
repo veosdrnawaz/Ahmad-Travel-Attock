@@ -11,7 +11,7 @@ interface ChatWidgetProps {
 
 const INITIAL_MESSAGE: ChatMessage = {
   id: '1',
-  text: "Assalam-o-Alaikum!\nMy name is Ibraheem, and I'm your AI Umrah Advisor from Ahmad Travel.\nHow can I help you today?",
+  text: "As-salamu alaykum!\nI'm Ibraheem. How can I help you with your trip today?",
   sender: 'bot',
   timestamp: new Date()
 };
@@ -49,7 +49,7 @@ export const ChatWidget: React.FC<ChatWidgetProps> = ({ isOpen, onToggle, onClos
     setTimeout(() => {
       const botMsg: ChatMessage = {
         id: (Date.now() + 1).toString(),
-        text: "Thank you for your message! Our advisor will review your query and get back to you shortly at 03184898594.",
+        text: "Thank you. Our team will review your request and call you at 03184898594 soon to discuss details.",
         sender: 'bot',
         timestamp: new Date()
       };
@@ -73,9 +73,9 @@ export const ChatWidget: React.FC<ChatWidgetProps> = ({ isOpen, onToggle, onClos
                 <div className="absolute bottom-0 right-0 w-2.5 h-2.5 bg-green-500 border-2 border-white rounded-full"></div>
               </div>
               <div>
-                <h3 className="font-bold text-gray-900 text-sm leading-tight">Ibraheem | AI Advisor</h3>
+                <h3 className="font-bold text-gray-900 text-sm leading-tight">Ibraheem | Travel Assistant</h3>
                 <span className="text-xs text-green-600 font-medium flex items-center gap-1">
-                  <span className="w-1.5 h-1.5 bg-green-600 rounded-full animate-pulse"></span> Online
+                  <span className="w-1.5 h-1.5 bg-green-600 rounded-full animate-pulse"></span> Active Now
                 </span>
               </div>
             </div>
@@ -101,8 +101,8 @@ export const ChatWidget: React.FC<ChatWidgetProps> = ({ isOpen, onToggle, onClos
                   }`}>
                      {msg.sender === 'bot' && msg.id === '1' ? (
                        <>
-                         <p className="font-bold text-gray-900 mb-1">Assalam-o-Alaikum!</p>
-                         {msg.text.replace("Assalam-o-Alaikum!\n", "").split('\n').map((line, i) => <p key={i} className={i === 0 ? "mb-2" : ""}>{line}</p>)}
+                         <p className="font-bold text-gray-900 mb-1">As-salamu alaykum!</p>
+                         {msg.text.replace("As-salamu alaykum!\n", "").split('\n').map((line, i) => <p key={i} className={i === 0 ? "mb-2" : ""}>{line}</p>)}
                        </>
                      ) : (
                        msg.text
@@ -123,7 +123,7 @@ export const ChatWidget: React.FC<ChatWidgetProps> = ({ isOpen, onToggle, onClos
                 type="text" 
                 value={inputValue}
                 onChange={(e) => setInputValue(e.target.value)}
-                placeholder="Ask me anything..." 
+                placeholder="Type a message..." 
                 className="w-full bg-white border border-gray-200 text-gray-800 text-sm rounded-full py-3 pl-5 pr-12 focus:outline-none focus:ring-2 focus:ring-[#1a3c6e]/20 focus:border-[#1a3c6e] transition-all shadow-sm placeholder:text-gray-400"
               />
               <button 

@@ -23,13 +23,13 @@ export const Hero: React.FC = () => {
         
         <div className="absolute inset-0 flex flex-col items-center justify-center text-center text-white px-4 pb-32">
           <h4 className="text-green-400 font-bold tracking-wider uppercase mb-3 text-sm md:text-base bg-white/10 backdrop-blur-sm px-4 py-1 rounded-full border border-white/10">
-            Travel Agency Discounts
+            Trusted by 5,000+ Travelers
           </h4>
           <h1 className="text-4xl md:text-6xl font-extrabold mb-6 leading-tight max-w-4xl drop-shadow-lg">
-            Book Umrah Services With <br/> Travel Agency Discounts
+            Your Sacred Journey, <br/> Simplified.
           </h1>
           <p className="text-base md:text-xl max-w-2xl mx-auto text-gray-100 mb-8 leading-relaxed drop-shadow-md font-medium">
-            Our mission is to connect people to Makkah and Madinah. No matter how far away you might be, we will help you find the Umrah trip that's right for you!
+            We handle the travel details so you can focus on your prayers. Premium Umrah & Tour services in Attock.
           </p>
         </div>
       </div>
@@ -44,15 +44,15 @@ export const Hero: React.FC = () => {
             
             {/* Month */}
             <div className="flex flex-col gap-1.5">
-              <label className="text-xs font-bold text-[#1a3c6e] uppercase tracking-wider">Month</label>
+              <label className="text-xs font-bold text-[#1a3c6e] uppercase tracking-wider">When?</label>
               <div className="relative">
                 <select 
                   className="w-full bg-gray-50 border border-gray-200 text-gray-700 text-sm py-3 px-4 pr-8 rounded-xl focus:outline-none focus:border-[#1a3c6e] focus:ring-1 focus:ring-[#1a3c6e] appearance-none cursor-pointer font-semibold transition-all hover:bg-gray-100"
                 >
-                  <option>All Months</option>
+                  <option>Any Date</option>
                   <option>January 2025</option>
                   <option>February 2025</option>
-                  <option>March 2025</option>
+                  <option>Ramadan 2025</option>
                 </select>
                 <div className="pointer-events-none absolute inset-y-0 right-0 flex items-center px-3 text-gray-400">
                   <svg className="fill-current h-4 w-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"><path d="M9.293 12.95l.707.707L15.657 8l-1.414-1.414L10 10.828 5.757 6.586 4.343 8z"/></svg>
@@ -62,7 +62,7 @@ export const Hero: React.FC = () => {
 
             {/* Package Type */}
             <div className="flex flex-col gap-1.5">
-              <label className="text-xs font-bold text-[#1a3c6e] uppercase tracking-wider">Package Type</label>
+              <label className="text-xs font-bold text-[#1a3c6e] uppercase tracking-wider">Trip Type</label>
               <div className="relative">
                 <select 
                   value={packageType}
@@ -70,10 +70,10 @@ export const Hero: React.FC = () => {
                   className="w-full bg-gray-50 border border-gray-200 text-gray-700 text-sm py-3 px-4 pr-8 rounded-xl focus:outline-none focus:border-[#1a3c6e] focus:ring-1 focus:ring-[#1a3c6e] appearance-none cursor-pointer font-semibold transition-all hover:bg-gray-100"
                 >
                   <option value="">Select Type</option>
-                  <option>Economy</option>
-                  <option>5 Star Premium</option>
-                  <option>Group Package</option>
                   <option>Umrah Packages</option>
+                  <option>Hajj</option>
+                  <option>Flights</option>
+                  <option>Tours</option>
                 </select>
                 <div className="pointer-events-none absolute inset-y-0 right-0 flex items-center px-3 text-gray-400">
                   <svg className="fill-current h-4 w-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"><path d="M9.293 12.95l.707.707L15.657 8l-1.414-1.414L10 10.828 5.757 6.586 4.343 8z"/></svg>
@@ -84,16 +84,15 @@ export const Hero: React.FC = () => {
             {/* Dynamic Umrah Type Dropdown */}
             {packageType === 'Umrah Packages' && (
               <div className="flex flex-col gap-1.5 animate-in fade-in zoom-in duration-300">
-                <label className="text-xs font-bold text-[#1a3c6e] uppercase tracking-wider">Umrah Category</label>
+                <label className="text-xs font-bold text-[#1a3c6e] uppercase tracking-wider">Class</label>
                 <div className="relative">
                   <select 
                     className="w-full bg-gray-50 border border-gray-200 text-gray-700 text-sm py-3 px-4 pr-8 rounded-xl focus:outline-none focus:border-[#1a3c6e] focus:ring-1 focus:ring-[#1a3c6e] appearance-none cursor-pointer font-semibold transition-all hover:bg-gray-100"
                   >
-                    <option>Any Category</option>
-                    <option>Family Umrah</option>
-                    <option>Couple Umrah</option>
-                    <option>Individual</option>
-                    <option>Group</option>
+                    <option>Any</option>
+                    <option>5-Star (VIP)</option>
+                    <option>Economy Plus</option>
+                    <option>Saver</option>
                   </select>
                   <div className="pointer-events-none absolute inset-y-0 right-0 flex items-center px-3 text-gray-400">
                     <svg className="fill-current h-4 w-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"><path d="M9.293 12.95l.707.707L15.657 8l-1.414-1.414L10 10.828 5.757 6.586 4.343 8z"/></svg>
@@ -104,16 +103,16 @@ export const Hero: React.FC = () => {
 
             {/* Pilgrims */}
             <div className="flex flex-col gap-1.5">
-              <label className="text-xs font-bold text-[#1a3c6e] uppercase tracking-wider">Pilgrims</label>
+              <label className="text-xs font-bold text-[#1a3c6e] uppercase tracking-wider">People</label>
               <div className="relative">
                 <select 
                   className="w-full bg-gray-50 border border-gray-200 text-gray-700 text-sm py-3 px-4 pr-8 rounded-xl focus:outline-none focus:border-[#1a3c6e] focus:ring-1 focus:ring-[#1a3c6e] appearance-none cursor-pointer font-semibold transition-all hover:bg-gray-100"
                 >
-                  <option>Any</option>
                   <option>1 Person</option>
                   <option>2 People</option>
                   <option>3 People</option>
-                  <option>4+ People</option>
+                  <option>Family (4+)</option>
+                  <option>Group</option>
                 </select>
                 <div className="pointer-events-none absolute inset-y-0 right-0 flex items-center px-3 text-gray-400">
                    <svg className="fill-current h-4 w-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"><path d="M9.293 12.95l.707.707L15.657 8l-1.414-1.414L10 10.828 5.757 6.586 4.343 8z"/></svg>
@@ -127,7 +126,7 @@ export const Hero: React.FC = () => {
                 type="submit"
                 className="w-full h-[46px] bg-[#1a3c6e] hover:bg-[#153059] text-white font-bold rounded-xl shadow-lg hover:shadow-xl flex items-center justify-center gap-2 transition-all transform active:scale-[0.98]"
               >
-                Search Packages
+                Search Deals
               </button>
             </div>
 

@@ -10,11 +10,12 @@ interface PackagesProps {
 const packagesData: Package[] = [
   {
     id: 1,
-    title: "November | 04 Person(s) | 10 Nights | Flight Package From USA",
-    tag: "Fixed Departure",
-    route: "Jeddah Airport -> Makkah -> Madinah -> Jeddah Airport",
+    title: "November Premium Umrah",
+    subTitle: "10 Nights | Flight Included",
+    tag: "Selling Fast",
+    route: "Jeddah -> Makkah (5N) -> Madinah (5N)",
     image: "https://images.unsplash.com/photo-1537181534458-43d336bb1276?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
-    price: "PKR 515,549 / Pilgrim",
+    price: "PKR 515,549 / Person",
     priceNumber: 515549,
     month: "November",
     type: "Economy",
@@ -25,33 +26,35 @@ const packagesData: Package[] = [
   },
   {
     id: 2,
-    title: "December | Group Package | 14 Nights | Economy Deal",
-    tag: "Best Seller",
-    route: "Madinah Airport -> Madinah -> Makkah -> Jeddah Airport",
+    title: "December Group Saver",
+    subTitle: "14 Nights | Best Value",
+    tag: "Best Value",
+    route: "Madinah (7N) -> Makkah (7N)",
     image: "https://images.unsplash.com/photo-1565552645632-d725f8bfc19a?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
-    price: "PKR 380,000 / Pilgrim",
+    price: "PKR 380,000 / Person",
     priceNumber: 380000,
     month: "December",
     type: "Group",
     rating: 4.8,
     amenities: [],
     inclusions: { flight: true, visa: true, transfer: true, hotel: true, meals: false },
-    distances: { makkah: "800 m", madinah: "500 m" }
+    distances: { makkah: "Shuttle", madinah: "500 m" }
   },
   {
     id: 3,
-    title: "January 2025 | VIP 5 Star | 7 Nights | All Inclusive",
-    tag: "Premium 5 Star",
-    route: "Jeddah -> Makkah (Clock Tower) -> Madinah (Oberoi) -> Jeddah",
+    title: "January VIP Experience",
+    subTitle: "7 Nights | 5-Star Luxury",
+    tag: "Luxury",
+    route: "Makkah (Clock Tower) -> Madinah (Oberoi)",
     image: "https://images.unsplash.com/photo-1591604129939-f1efa4d9f7fa?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
-    price: "PKR 850,000 / Pilgrim",
+    price: "PKR 850,000 / Person",
     priceNumber: 850000,
     month: "January",
     type: "Premium",
     rating: 5.0,
     amenities: [],
     inclusions: { flight: true, visa: true, transfer: true, hotel: true, meals: true },
-    distances: { makkah: "0 m", madinah: "50 m" }
+    distances: { makkah: "0 m (Haram View)", madinah: "50 m" }
   }
 ];
 
@@ -81,9 +84,12 @@ const PackageCard: React.FC<PackageCardProps> = ({ pkg, onBook }) => {
       {/* Top Section */}
       <div className="p-5 pb-2 flex-grow">
          <div className="flex justify-between items-start gap-4 mb-3">
-           <h3 className="text-base font-bold text-[#1a3c6e] leading-snug line-clamp-2 group-hover:text-blue-600 transition-colors">
-             {pkg.title}
-           </h3>
+           <div>
+             <h3 className="text-base font-bold text-[#1a3c6e] leading-snug group-hover:text-blue-600 transition-colors">
+               {pkg.title}
+             </h3>
+             {pkg.subTitle && <p className="text-xs text-gray-500 mt-1">{pkg.subTitle}</p>}
+           </div>
          </div>
          
          {pkg.tag && (
@@ -93,25 +99,25 @@ const PackageCard: React.FC<PackageCardProps> = ({ pkg, onBook }) => {
          )}
 
          <div className="mb-4">
-            <p className="text-[10px] font-bold text-gray-400 uppercase tracking-wider mb-1">Routes</p>
+            <p className="text-[10px] font-bold text-gray-400 uppercase tracking-wider mb-1">Itinerary</p>
             <p className="text-xs text-gray-600 leading-relaxed">
               {pkg.route}
             </p>
          </div>
 
          <div className="mb-4">
-            <p className="text-[10px] font-bold text-gray-400 uppercase tracking-wider mb-2">Inclusions</p>
+            <p className="text-[10px] font-bold text-gray-400 uppercase tracking-wider mb-2">Includes</p>
             <div className="flex items-center gap-4">
                {pkg.inclusions.flight && <InclusionIcon icon={Plane} label="Flight" />}
                {pkg.inclusions.visa && <InclusionIcon icon={FileText} label="Visa" />}
-               {pkg.inclusions.transfer && <InclusionIcon icon={Bus} label="Transfer" />}
-               {pkg.inclusions.meals && <InclusionIcon icon={Coffee} label="Breakfast" />}
+               {pkg.inclusions.transfer && <InclusionIcon icon={Bus} label="Bus" />}
+               {pkg.inclusions.meals && <InclusionIcon icon={Coffee} label="Food" />}
                {pkg.inclusions.hotel && <InclusionIcon icon={Bed} label="Hotel" />}
             </div>
          </div>
 
          <div>
-            <p className="text-[10px] font-bold text-gray-400 uppercase tracking-wider mb-2">Distance</p>
+            <p className="text-[10px] font-bold text-gray-400 uppercase tracking-wider mb-2">Distance to Haram</p>
             <div className="flex gap-6">
                <div className="flex items-center gap-2">
                   <div className="w-8 h-8 rounded bg-gray-100 flex items-center justify-center">
@@ -179,7 +185,7 @@ const PackageCard: React.FC<PackageCardProps> = ({ pkg, onBook }) => {
              className="bg-transparent border border-[#1a3c6e] text-[#1a3c6e] px-3 py-2 rounded-lg hover:bg-[#1a3c6e] hover:text-white transition-colors flex items-center gap-1"
            >
               <FileDown size={14} />
-              <span className="text-xs font-bold">PDF</span>
+              <span className="text-xs font-bold">Flyer</span>
            </button>
         </div>
       </div>
@@ -193,13 +199,14 @@ export const Packages: React.FC<PackagesProps> = ({ onBook }) => {
       <div className="max-w-6xl mx-auto">
         <div className="flex justify-between items-end mb-10">
           <div>
-             <h2 className="text-2xl md:text-3xl font-bold text-[#1a3c6e]">Popular Umrah Packages 2025</h2>
+             <h2 className="text-2xl md:text-3xl font-bold text-[#1a3c6e]">Our Best Packages</h2>
+             <p className="text-gray-500 mt-2 text-sm">Top value deals for Umrah and Holidays.</p>
           </div>
           <button 
             onClick={() => document.getElementById('packages')?.scrollIntoView({ behavior: 'smooth' })}
             className="text-sm font-semibold text-gray-500 hover:text-[#1a3c6e] transition-colors"
           >
-            View all packages
+            See All Offers
           </button>
         </div>
 
